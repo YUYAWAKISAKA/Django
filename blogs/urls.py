@@ -1,25 +1,27 @@
-# myblog/blogs/urls.py
 from django.urls import path
 
 from . import views
 
-# アプリケーションの名前空間
-# https://docs.djangoproject.com/ja/2.0/intro/tutorial03/
+# set the application namespace
+# https://docs.djangoproject.com/en/2.0/intro/tutorial03/
 app_name = 'blogs'
 
 urlpatterns = [
     # ex: /
-    path('', views.index, name='index'),
+    path('', views.IndexView.as_view(), name='index'),
 
     # ex: /post/create/
-    path('post/create/', views.create, name='create'),
+    path('post/create/', views.CreateView.as_view(), name='create'),
 
     # ex: /post/1/
-    path('post/<int:pk>/', views.detail, name='detail'),
+    path('post/<int:pk>/', views.DetailView.as_view(), name='detail'),
 
     # ex: /post/1/update/
-    path('post/<int:pk>/update/', views.update, name='update'),
+    path('post/<int:pk>/update/', views.UpdateView.as_view(), name='update'),
 
     # ex: /post/1/delete
-    path('post/<int:pk>/delete/', views.delete, name='delete'),
+    path('post/<int:pk>/delete/', views.DeleteView.as_view(), name='delete'),
+
+    # ex: /post/help/
+    path('post/help/', views.help, name='help'),
 ]
